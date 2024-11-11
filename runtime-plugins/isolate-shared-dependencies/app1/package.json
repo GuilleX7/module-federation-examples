@@ -18,8 +18,8 @@
   },
   "dependencies": {
     "@module-federation/runtime": "0.6.10",
-    "shared-lib": "workspace:*",
-    "shared-lib-2": "workspace:*",
+    "shared-lib": "workspace:1.0.0",
+    "shared-lib-2": "workspace:1.1.0",
     "vue": "~2.7.0"
   }
 }

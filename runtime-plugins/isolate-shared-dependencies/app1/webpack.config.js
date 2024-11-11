@@ -1,6 +1,8 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 const { ModuleFederationPlugin } = require('@module-federation/enhanced');
+const { ModuleFederationIsolationPlugin } = require('../plugin');
+const path = require('path');
 
 /**
  * @type {import('webpack').Configuration}
@@ -39,6 +41,9 @@ const configuration = {
   plugins: [
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin(),
+    new ModuleFederationIsolationPlugin({
+      stateStrategy: 'use-origin',
+    }),
     new ModuleFederationPlugin({
       name: 'app1',
       filename: 'remoteEntry.js',
@@ -47,7 +52,8 @@ const configuration = {
       exposes: {
         '.': './src/index.ts',
       },
-      runtimePlugins: [require.resolve('./isolatePlugin.ts')],
+      dts: false,
+      dev: false,
     }),
   ],
   optimization: {

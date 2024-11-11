@@ -4,6 +4,8 @@
     <span>Lib 1 instance ID: {{ sharedLib1Id }} | </span>
     <span>Lib 2 instance ID through lib 1: {{ sharedLib2IdThroughLib1 }} |</span>
     <span>Lib 2 instance ID: {{ sharedLib2Id }}</span>
+    <Box v-for="i in boxes" :key="i" :id="i" />
+    <button @click="boxes++">Add app 2 box</button>
     <div ref="childContainer"></div>
   </div>
 </template>
@@ -20,6 +22,7 @@ export default {
       sharedLib2IdThroughLib1: getLib2InstanceIdThroughLib1(),
       sharedLib2Id: getLib2InstanceId(),
       updateTimer: null as ReturnType<typeof setInterval> | null,
+      boxes: 0,
     };
   },
   mounted(): void {
